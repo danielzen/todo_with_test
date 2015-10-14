@@ -53,17 +53,28 @@ gulp.task('webpack', function(){
 //############################################
 
 var protractor = require("gulp-protractor").protractor;
+var Server = require('karma').Server;
 
+gulp.task('test:karma', function(done){
+  //karma
+  new Server({
+    configFile: __dirname + '/karma.config.js',
+    singleRun: true
+  }, done).start();
+});
 
-gulp.task('test', function(){
-	//protractor
-  gulp.src(["./src/tests/*.js"])
+gulp.task('test:protractor', function(){
+  //protractor
+  //webdriver-manager start
+  gulp.src(["./src/tests/protractor/*.js"])
     .pipe(protractor({
-        configFile: "conf.js",
+        configFile: "protractor.config.js",
         args: ['--baseUrl', 'http://127.0.0.1:3000']
     }))
     .on('error', function(e) { throw e })
-});
+})
+
+gulp.task('test', ['test:karma', 'test:protractor']);
 
 
 //Default
