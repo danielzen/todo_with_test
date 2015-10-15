@@ -1,15 +1,16 @@
+console.log('load from babel-loader')
 angular.module('todoApp', [])
   .controller('TodoListController', ($scope) => {
     var todoList = $scope;
     $scope.todos = [
-      {text:'learn angular', done:true},
-      {text:'build an angular app', done:false}];
- 
+      {text:'learn angular skills', done:true},
+      {text:'build an angular', done:false}];
+
     $scope.addTodo = () => {
       $scope.todos.push({text:$scope.todoText, done:false});
       $scope.todoText = '';
     };
- 
+
     $scope.remaining = () => {
       var count = 0;
       angular.forEach($scope.todos, function(todo) {
@@ -17,7 +18,7 @@ angular.module('todoApp', [])
       });
       return count;
     };
- 
+
     $scope.archive = () => {
       var oldTodos = $scope.todos;
       $scope.todos = [];
