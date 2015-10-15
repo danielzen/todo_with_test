@@ -4,4 +4,4 @@ require('style!css!sass!../scss/main.scss');
 
 var angular = require('angular');
 
-require('../js-src/app.js');
+require(__dirname + '/../ng-src/app.js');
